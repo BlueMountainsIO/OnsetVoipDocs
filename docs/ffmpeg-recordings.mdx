@@ -1,0 +1,43 @@
+---
+title: Configuring and using FFmpeg for MP3 audio recordings
+description: FFmpeg setup for MP3 audio recordings.
+---
+
+# Configuring and using FFmpeg for MP3 audio recordings
+
+:::note
+FFmpeg is only needed if you require MP3 recordings.
+:::
+
+The plugin will try to find the ffmpeg binary in the following order:
+
+1. Command line argument `-FFmpegPath=`
+2. Environment variable `FFMPEG`
+3. Environment variable `FFMPEG_PATH`
+4. **Edit** -> **Project Settings** -> **Onset VoIP Settings** -> **Advanced** -> **FFmpeg Path**
+
+Go to:
+
+**Edit** -> **Project Settings** -> **Onset VoIP Settings** -> **Advanced** -> **FFmpeg Path**
+
+![FFmpeg Path setting](/img/ffmpeg-path.png)
+
+Set the path to your folder that contains the `ffmpeg(.exe)` binary.
+
+This can be a relative or absolute path. To package your project with ffmpeg set a relative path to your Content directory like in the image above.
+
+Then add the ffmpeg folder to be included in your packaged build under:
+
+**Edit** -> **Project Settings** -> **Project** -> **Packaging** -> **Additional Non-Asset Directories To Copy**
+
+If you only require ffmpeg for recording on dedicated servers you can use:
+
+**Additional Non-Asset Directories To Copy for dedicated server only**
+
+![Additional Non-Asset Directories To Copy packaging setting](/img/ffmpeg-packaging.png)
+
+After correct setup audio recording supports MP3.
+
+There is also another node to convert any audio file to another codec.
+
+![Convert audio file node](/img/ffmpeg-convert-node.png)

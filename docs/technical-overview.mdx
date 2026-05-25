@@ -1,0 +1,22 @@
+---
+title: Technical overview
+description: Technical overview of the Onset VoIP plugin runtime classes.
+---
+
+# Technical overview
+
+The plugin uses Unreal's replicated `APlayerState` as the identity for each player's voice.
+
+`UOnsetVoipWorldSubsystem` is created for each game or PIE world. It manages `UOnsetVoipTalker` instances and automatically creates or destroys one for each `APlayerState`.
+
+`UOnsetVoipTalker` handles the voice state for one (remote) player. It receives voice packets, runs them through the playout and jitter-buffer pipeline, updates talking state, and dispatches decoded audio for playback. On clients and listen servers, 2D and 3D audio components are created or reused only when that playback type is needed. It can also create a `UOnsetNameplateComponent` for remote pawns when nameplate settings allow it.
+
+`UOnsetVoipLocalPlayerSubsystem` is created for each local player. It manages microphone capture, voice processing, Opus encoding, channel hints, loopback, recording, and sending local voice packets. It is not used on dedicated servers.
+
+`UOnsetVoipDataChannel` is a custom network channel for `FOnsetVoipPacket` transmission. A client uses it to send local packets to the server. The server has one channel per connected client and forwards packets only to relevant connections. On a listen server, received remote packets can also be checked for local host playback.
+
+`FOnsetVoipPacket` contains the compressed Opus voice buffer, sample position, amplitude, optional owner `APlayerState`, optional voice channel hints, and network serialization.
+
+`UOnsetVoipAudioComponent` owns a `UOnsetVoipSoundWave`, binds to decoded talker audio, and applies the configured attenuation and source effect chain assets.
+
+`UOnsetVoipSoundWave` is based on `USoundWaveProcedural`. It buffers decoded float PCM and supplies it to Unreal's audio mixer for playback.

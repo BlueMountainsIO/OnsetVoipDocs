@@ -1,0 +1,58 @@
+---
+title: Plugin Setup (Required)
+description: Required setup for the Onset VoIP Unreal Engine plugin.
+---
+
+# Plugin Setup
+
+1. Install the plugin via the Unreal Engine Launcher for your engine version.
+3. Please ensure that any other voice plugins/systems are removed including configuration!
+2. Open your project, go to **Edit** -> **Plugins**, and search for `Onset VoIP`. Enable the plugin and close the editor.
+
+![Activate plugin in Unreal Engine](/img/plugin-activate.jpg)
+
+These steps complete the minimum requirements to make the plugin work.
+
+- [Set up push to talk](/docs/push-to-talk).
+- [Test voice in editor (PIE)](/docs/testing-in-editor).
+- [Try the example project](https://github.com/BlueMountainsIO/VoiceExample).
+
+### Optional: Manually configure the network channel definition
+
+As of plugin version 2.0, you no longer need to manually configure the net channel in `DefaultEngine.ini`. The plugin now creates net channels automatically.
+
+If you have special requirements for net channel definitions, such as a custom NetDriver, you can still configure the channel manually.
+
+1. Your project should contain `Config/DefaultEngine.ini`. Open this file in a text editor.
+2. Add the following lines to your `.ini` file.
+
+For Unreal Engine 5.3 or newer:
+
+```ini
+[/Script/Engine.NetDriver]
++ChannelDefinitions=(ChannelName=OnsetVoip, ClassName=/Script/OnsetVoip.OnsetVoipDataChannel, StaticChannelIndex=3, bTickOnCreate=true, bServerOpen=true, bClientOpen=true, bInitialServer=true, bInitialClient=true)
+```
+
+For Unreal Engine 5.2 and older, note the `StaticChannelIndex` value:
+
+```ini
+[/Script/Engine.NetDriver]
++ChannelDefinitions=(ChannelName=OnsetVoip, ClassName=/Script/OnsetVoip.OnsetVoipDataChannel, StaticChannelIndex=2, bTickOnCreate=true, bServerOpen=true, bClientOpen=true, bInitialServer=true, bInitialClient=true)
+```
+
+3. The result should look like this:
+
+![DefaultEngine.ini ChannelDefinitions example](/img/setup-channel-definitions.png)
+
+:::caution
+`ChannelDefinitions` must stay on a single line, exactly like in the screenshot above, or Unreal will not read it correctly.
+:::
+
+4. Save the file and open your project in the editor.
+
+:::note
+Note for third-party OnlineSubsystems such as RedpointEOS:
+
+Some third-party online subsystems override the network channel definitions in their plugin config, such as the `/Config` folder inside the plugin. In this case, adding `ChannelDefinitions` to your project config may not work and you will have to add it to the subsystem plugin config instead. Please ask the creator of the OSS how to configure additional network channels if it does not work for you.
+Of course you may also contact me for support.
+:::

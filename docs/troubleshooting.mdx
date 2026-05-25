@@ -1,0 +1,137 @@
+---
+title: Troubleshooting & Reporting Problems
+description: Troubleshooting and reporting information for Onset VoIP.
+---
+
+# Troubleshooting & Reporting Problems
+
+If you have questions, you can always email me or ask on the Discord server.
+
+For complex problems and faster help, please include your log file. For privacy reasons, you can also send logs by email.
+
+#### Advanced logging
+Add the following to your `DefaultEngine.ini`:
+```ini
+[Core.Log]
+LogOnsetVoip=VeryVerbose
+LogOnsetAudioCapture=VeryVerbose
+```
+This will log useful information that helps diagnose issues. Log files may become large.
+
+
+#### To fix and report crashes
+- Ensure debug symbols are downloaded for your engine installation. In the Epic Launcher go to your engine version and select *Options* and download *Editor symbols for debugging.*
+- Enable advanced logging (see above).
+- Reproduce the issue in the editor or in a packaged development build of your project.
+
+
+### Common issues
+
+<div className="troubleshooting-list">
+
+<div className="troubleshooting-item">
+  <div className="troubleshooting-row troubleshooting-row--problem">
+    <span className="troubleshooting-label troubleshooting-label--problem">Problem</span>
+    <div className="troubleshooting-copy">
+      <p>I don’t hear myself when using <code>voice.loopback</code> or with multiple PIE sessions.</p>
+    </div>
+  </div>
+  <div className="troubleshooting-row troubleshooting-row--solution">
+    <span className="troubleshooting-label troubleshooting-label--solution">Solution</span>
+    <div className="troubleshooting-copy">
+      <p>By default, the plugin should use the configured default input device of your OS. In some cases, a different microphone device is used. You can use the function <code>UOnsetVoipLocalPlayerSubsystem::ChangeVoiceCaptureDevice</code> to change the input device to a different one.</p>
+    </div>
+  </div>
+</div>
+
+<div className="troubleshooting-item">
+  <div className="troubleshooting-row troubleshooting-row--problem">
+    <span className="troubleshooting-label troubleshooting-label--problem">Problem</span>
+    <div className="troubleshooting-copy">
+      <p>Jittery audio in editor but packaged builds are fine.</p>
+    </div>
+  </div>
+  <div className="troubleshooting-row troubleshooting-row--solution">
+    <span className="troubleshooting-label troubleshooting-label--solution">Solution</span>
+    <div className="troubleshooting-copy">
+      <p>Ensure that Network Emulation is turned off. Edit -> Editor Preferences -> Level Editor -> Play -> Enable Network Emulation.</p>
+    </div>
+  </div>
+</div>
+
+<div className="troubleshooting-item">
+  <div className="troubleshooting-row troubleshooting-row--problem">
+    <span className="troubleshooting-label troubleshooting-label--problem">Problem</span>
+    <div className="troubleshooting-copy">
+      <p>Clients hear no voice, very quiet voice, or choppy voice, and the log shows <code>Connection not ready or saturated</code> or dropped voice packets.</p>
+    </div>
+  </div>
+  <div className="troubleshooting-row troubleshooting-row--solution">
+    <span className="troubleshooting-label troubleshooting-label--solution">Solution</span>
+    <div className="troubleshooting-copy">
+      <p>The network connection is likely saturated by other replicated traffic. Add the following to your <code>DefaultEngine.ini</code> and, if the issue remains, use Unreal’s <a href="https://dev.epicgames.com/documentation/en-us/unreal-engine/using-the-network-profiler-in-unreal-engine">Network Profiler</a> to find replication/RPC traffic that can be reduced.</p>
+
+```ini
+[/Script/OnlineSubsystemUtils.IpNetDriver]
+MaxClientRate=200000
+MaxInternetClientRate=200000
+
+[/Script/Engine.Player]
+ConfiguredInternetSpeed=200000
+ConfiguredLanSpeed=200000
+```
+
+    </div>
+  </div>
+</div>
+
+<div className="troubleshooting-item">
+  <div className="troubleshooting-row troubleshooting-row--problem">
+    <span className="troubleshooting-label troubleshooting-label--problem">Problem</span>
+    <div className="troubleshooting-copy">
+      <p>On macOS, microphone capture does not work.</p>
+    </div>
+  </div>
+  <div className="troubleshooting-row troubleshooting-row--solution">
+    <span className="troubleshooting-label troubleshooting-label--solution">Solution</span>
+    <div className="troubleshooting-copy">
+      <p>Add the following to your <code>Info.plist</code>:</p>
+
+```xml
+<key>NSMicrophoneUsageDescription</key>
+<string>Required by VoIP.</string>
+```
+
+      <p>The string value can be customized.</p>
+    </div>
+  </div>
+</div>
+
+<div className="troubleshooting-item">
+  <div className="troubleshooting-row troubleshooting-row--problem">
+    <span className="troubleshooting-label troubleshooting-label--problem">Problem</span>
+    <div className="troubleshooting-copy">
+      <p>Wwise: Voice capture does not work if the Wwise plugin is enabled.</p>
+    </div>
+  </div>
+  <div className="troubleshooting-row troubleshooting-row--solution">
+    <span className="troubleshooting-label troubleshooting-label--solution">Solution</span>
+    <div className="troubleshooting-copy">
+      <p>Go to <strong>Edit</strong> -> <strong>Project Settings</strong> -> <strong>Wwise - Integration Settings</strong> -> <strong>Unreal Audio Routing</strong> and set it to “Both Wwise and Unreal audio” or use “Route through AudioLink”. Try what works for you.</p>
+      ![Wwise Unreal Audio Routing setting](/img/wwise-settings.png)
+    </div>
+  </div>
+</div>
+
+</div>
+
+:::note
+Note: I did not test Wwise myself. The information provided here was reported by users.
+:::
+
+This VoIP plugin plays voice through a `UAudioComponent` with a `USoundWaveProcedural` which is based on `USoundWave`. This means it works like any other standard audio in the engine.
+Ask the creator of your third-party audio plugin how to handle standard Unreal Audio for your needs.
+
+## Screenshot of all plugin settings inside **Edit** -> **Project Settings** -> **Onset VoIP Settings**: {#plugin-settings}
+
+![All plugin settings](/img/plugin-settings.jpg)

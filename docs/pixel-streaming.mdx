@@ -1,0 +1,22 @@
+---
+title: Pixel Streaming
+description: Pixel Streaming support for microphone audio via WebRTC.
+---
+
+# Pixel Streaming
+
+Onset VoIP supports Unreal's Pixel Streaming, which captures microphone audio in the web browser through WebRTC.
+
+To enable Pixel Streaming support, first ensure the `PixelStreaming` plugin is enabled in your project.
+
+Then set `bEnablePixelStreamingSupport = true` in `OnsetVoip.Build.cs`.
+
+![PixelStreaming support enable](/img/enable-pixel-streaming-support.jpg)
+
+Finally, set the `PixelStreaming` plugin `Enabled` value to `true` in `OnsetVoip.uplugin`.
+
+![PixelStreaming support enable 2](/img/enable-pixel-streaming-support-uplugin.jpg)
+
+:::note
+Setting the log category `LogOnsetVoip` to `Verbose` will print additional information about Pixel Streaming voice for debugging.
+:::

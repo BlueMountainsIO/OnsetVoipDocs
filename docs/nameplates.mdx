@@ -1,0 +1,35 @@
+---
+title: Custom player nameplates widgets
+description: Configuring custom player nameplate widgets.
+---
+
+# Custom player nameplates widgets
+
+Go to **Edit** -> **Project Settings** -> **Onset VoIP Settings** -> **Nameplate** -> **Default Nameplate Widget**
+Assign your custom widget here.
+
+![Default Nameplate Widget setting](/img/nameplate-widget-setting.jpg)
+
+
+## Talking state and player name in a nameplate widget.
+
+Add the interface class `UOnsetVoipNameWidgetInterface` to your widget. In your blueprint widget click on ``Class Settings`` then go to the ``Details`` panel and scroll down to Interfaces.
+
+![Implemented Interfaces setting for OnsetVoipNameWidgetInterface](/img/nameplate-widget-interface-add2.jpg)
+
+Under ``Implemented Interfaces`` add `OnsetVoipNameWidgetInterface`.
+![Implemented Interfaces setting for OnsetVoipNameWidgetInterface](/img/nameplate-widget-interface-add.jpg)
+
+Now the interface functions can be implemented inside the widget blueprint.
+
+![Nameplate widget interface functions](/img/nameplate-interface-functions.jpg)
+
+`SetOwningPlayerState` will be called when a player possess a pawn. Save the player state in your widget blueprint. Now you have the correct player state for this nameplate that you can use to get player names or talking states.
+
+`GetOwningPlayerState` is a helper function. Implement it and return the player state variable that you used to save it in SetOwningPlayerState.
+
+![Example usage of a saved player state in the nameplate widget](/img/nameplate-example-playerstate-usage.jpg)
+
+:::note
+Refer to the default nameplate widget `WBP_Nameplate` that ships in the plugins content folder.
+:::

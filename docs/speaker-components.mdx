@@ -1,0 +1,40 @@
+---
+title: Speaker components
+description: Using UOnsetVoipSpeakerComponent for world loudspeakers and radios.
+---
+
+# Speaker components
+
+`UOnsetVoipSpeakerComponent` can be used to play a remote player's voice from a placed or spawned speaker actor in the level.
+
+This is useful for things like loudspeakers, radios, intercoms, PA systems, cameras, or any actor where voice should come from the actor's location instead of only from the speaking player's pawn.
+
+![speaker component demo](/img/speakercomponent_demo.jpg)
+
+## Setup
+
+Create an actor blueprint for your speaker and add an `OnsetVoipSpeakerComponent`.
+
+Make sure the actor that owns the speaker component is replicated. The component is replicated by default, but the owning actor must also replicate for other clients to know about it.
+
+On the server, get the `UOnsetVoipTalker` for the player you want to play through the speaker and call `SetTalkerForPlayback` on the speaker component.
+
+To stop the speaker from playing that player, call `SetTalkerForPlayback` again with no talker.
+
+## Network relevancy
+
+The speaker uses the owning actor's normal Unreal network relevancy. If the speaker actor is relevant to a client, that client can receive the voice packet for speaker playback.
+
+This means the speaker's range is controlled by the owning actor, not by the Onset VoIP setting `MaxReplicationDistance`. For distance-based speaker range, change the actor replication settings such as `Net Cull Distance Squared`.
+
+Speaker playback is part of the world/proximity voice channel (`0`). If a player has been removed from channel `0`, or is muted on channel `0`, their voice will not be routed through speaker components.
+
+If you use `ToggleVoiceCaptureWithChannel` or `ToggleVoiceCaptureWithChannels`, speaker playback is only considered when the player is speaking on the world channel (`0`). A positive 2D voice channel hint will route through that 2D channel instead.
+
+## Audio settings
+
+`UOnsetVoipSpeakerComponent` inherits from `UOnsetVoipAudioComponent`, so it uses the same sound wave, attenuation, source effect chain, and volume behavior as 3D voice playback.
+
+The console variable `voice.volume3d` affects speaker components.
+
+You can change attenuation and source effects on the component like you would on other runtime voice audio components.

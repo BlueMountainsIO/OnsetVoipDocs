@@ -1,0 +1,25 @@
+---
+title: Audio volume
+description: Changing microphone gain and remote player voice volume.
+---
+
+## Changing microphone gain (local input volume)
+
+The console variable `voice.MicGain` controls the gain of the local microphone capture.
+Do not use the original engine console variable *voice.MicInputGain* as this will have no effect on the plugin.
+
+## Microphone auto leveling volume
+
+Enabled by default the plugin will automatically level the microphone volume so your voice stays smooth for other players. The console variable `voice.MicAutoLevel` (enabled by default) controls this setting.
+
+## Changing remote player voice volume
+
+There are mulitple ways to change the volume of other (remote) players.
+
+The cleanest way is to add sound classes in the settings and then changing the volume in the sound class.
+
+![settings sound class](/img/settings-soundclass.jpg)
+
+Another way is to use these built in console commands.
+
+`voice.volume3d` sets volume on all 3d audio (proximity, voice channel 0 and speaker components). `voice.volume2d` sets volume for voice that you hear through voice channels.

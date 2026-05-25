@@ -1,0 +1,52 @@
+---
+title: Muting or disabling voice
+description: Local mutes, server-side mutes, channel mutes, and disabling voice.
+---
+
+# Muting or disabling voice
+
+`UOnsetVoipTalker` has a few different ways to stop voice, depending on who should be affected.
+
+Use `SetMuted` when one local player does not want to hear another player. Use the server-side mute functions when the server should control who can hear whom. Use `SetVoipEnabled(false)` only when a talker should be disabled completely.
+
+## Local mute
+
+`SetMuted` is a client-side playback mute. Call it on the client of the player who wants to mute the audio.
+
+For example, if Player A wants to mute Player B, call `SetMuted(true)` on Player B's `UOnsetVoipTalker` on Player A's client.
+
+This only affects Player A. Other players can still hear Player B.
+
+Call `SetMuted(false)` to unmute again. Use `IsMuted` to check the current local mute state.
+
+:::caution
+On a listen server, `SetMuted` only affects what the host player hears. It does not stop the server from routing that talker's voice to other clients.
+:::
+
+## Server mute
+
+Use `SetMutedForPlayerState` or `SetMutedForVoipTalker` when the server should stop one listener from hearing one specific speaker.
+
+Call the function on the speaker's `UOnsetVoipTalker`, then pass the listener. This blocks that speaker's voice from being routed to that listener.
+
+This is useful for block lists, moderation, team rules, or gameplay rules where the server controls voice access.
+
+Use `IsMutedForPlayerState` or `IsMutedForVoipTalker` on the speaker talker to check the current state.
+
+## Channel mute
+
+Use `SetMutedOnVoiceChannel` on the server when a talker should stay in a voice channel but should not be allowed to speak in it.
+
+The talker can still listen to the channel if they are still in it. Channel mute only blocks that talker's outgoing voice on that channel.
+
+Channel `0` is the world, proximity, and speaker component channel. Muting a talker on channel `0` prevents their proximity voice and speaker component voice from being routed.
+
+Use `IsMutedOnVoiceChannel` to check the current channel mute state.
+
+## Disabling voice completely
+
+Use `SetVoipEnabled(false)` on the server when a talker should not send voice to anyone.
+
+This is stronger than muting one listener or one channel. For normal player mute menus, prefer `SetMuted`.
+
+Calling `SetVoipEnabled(false)` on a client stops that client from playing and processing the talker's audio, but it does not replace the server-side mute functions.

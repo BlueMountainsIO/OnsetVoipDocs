@@ -1,0 +1,125 @@
+import Link from '@docusaurus/Link';
+
+<main className="features-page">
+  <section className="features-hero" aria-labelledby="features-heading">
+    <div className="features-hero__content">
+      <p className="features-eyebrow">The VoIP plugin that you have been waiting for</p>
+      <h1 id="features-heading">Dynamic Voice Chat System</h1>
+      <h2 className="features-subtitle">(aka Onset VoIP)</h2>
+      <p className="features-lede">
+        {'A feature-rich voice chat plugin for games and realtime Unreal Engine projects. Easy to use that lets you build gameplay features without relying on an external voice service.'}
+      </p>
+      <div className="features-actions">
+        <a className="button button--primary" href="https://www.fab.com/listings/78769f70-76a5-4cfd-bac0-1fed7f99381a">
+          {'View on Fab'}
+        </a>
+        <Link className="button button--secondary" to="/docs/setup">
+          {'Read setup docs'}
+        </Link>
+      </div>
+    </div>
+  </section>
+
+  <section className="features-strip" aria-label="Buying highlights">
+    <div className="features-strip__item">
+      <span className="features-strip__label">Zero Config</span>
+      <strong>Just enable the plugin and get started</strong>
+    </div>
+    <div className="features-strip__item">
+      <span className="features-strip__label">Works out of the box</span>
+      <strong>No third party services, just Unreal's networking</strong>
+    </div>
+    <div className="features-strip__item">
+      <span className="features-strip__label">Cross platform</span>
+      <strong>Windows, macOS, Linux, Android, iOS and Pixel Streaming</strong>
+    </div>
+    <div className="features-strip__item">
+      <span className="features-strip__label">Ships with source</span>
+      <strong>Full source code access</strong>
+    </div>
+  </section>
+
+  <section className="features-section" aria-labelledby="build-heading">
+    <div className="features-section__heading">
+      <p className="features-eyebrow">What you can ship</p>
+      <h2 id="build-heading">Voice systems for real gameplay</h2>
+      <p>
+        {'From proximity chat to radios, phones, team comms, PA systems, and world speakers, Onset VoIP gives you the building blocks for voice that fits the way your game is played, all inside Unreal.'}
+      </p>
+    </div>
+
+    <ul className="feature-marketing-list">
+      <li><span className="feature-marketing-list__icon" aria-hidden="true">📶</span><span className="feature-marketing-list__text">{'Supports proximity (3D), global, team and walkie talkie with the use of voice channels (2D).'}</span></li>
+      <li><span className="feature-marketing-list__icon" aria-hidden="true">🔊</span><span className="feature-marketing-list__text">{'Replicated speaker components for radios, PA systems, intercoms, cameras, vehicles, loudspeakers, and world props.'}</span></li>
+      <li><span className="feature-marketing-list__icon" aria-hidden="true">💬</span><span className="feature-marketing-list__text">{'Voice channel system that lets you create gameplay features like walkie talkies, cellphones or team voice chat.'}</span></li>
+      <li><span className="feature-marketing-list__icon" aria-hidden="true">✨</span><span className="feature-marketing-list__text">{'Noise suppression using librnnoise.'}</span></li>
+      <li><span className="feature-marketing-list__icon" aria-hidden="true">🎚️</span><span className="feature-marketing-list__text">{'Lets you change volume, add SourceEffectChain and AttenuationSettings on a per player basis.'}</span></li>
+      <li><span className="feature-marketing-list__icon" aria-hidden="true">🧩</span><span className="feature-marketing-list__text">{'No config changes required and works without editing pawn or character classes/blueprints.'}</span></li>
+      <li><span className="feature-marketing-list__icon" aria-hidden="true">🏷️</span><span className="feature-marketing-list__text">{'Nameplate widgets that display talking state and the player name above a character/pawn.'}</span></li>
+      <li><span className="feature-marketing-list__icon" aria-hidden="true">🌐</span><span className="feature-marketing-list__text">{'Broad platform support including PixelStreaming.'}</span></li>
+      <li><span className="feature-marketing-list__icon" aria-hidden="true">🚫</span><span className="feature-marketing-list__text">{'Unreal sessions are not required.'}</span></li>
+      <li><span className="feature-marketing-list__icon" aria-hidden="true">🖥️</span><span className="feature-marketing-list__text">{'Supports dedicated and listen servers.'}</span></li>
+      <li><span className="feature-marketing-list__icon" aria-hidden="true">🔒</span><span className="feature-marketing-list__text">{'No third party service/server or dependencies needed.'}</span></li>
+      <li><span className="feature-marketing-list__icon" aria-hidden="true">📣</span><span className="feature-marketing-list__text">{'Delegates to detect when a player is talking.'}</span></li>
+      <li><span className="feature-marketing-list__icon" aria-hidden="true">📦</span><span className="feature-marketing-list__text">{'Uses custom network channel for voice data like the original engine implementation.'}</span></li>
+      <li><span className="feature-marketing-list__icon" aria-hidden="true">⚡</span><span className="feature-marketing-list__text">{'Bandwidth optimized by sending voice data to relevant players only and using the latest libopus 1.6.1.'}</span></li>
+      <li><span className="feature-marketing-list__icon" aria-hidden="true">🎤</span><span className="feature-marketing-list__text">{'Change input device (microphone) at runtime, including input gain and normalization.'}</span></li>
+      <li><span className="feature-marketing-list__icon" aria-hidden="true">🔴</span><span className="feature-marketing-list__text">{'Record VoIP audio to an audio file (PCM, WAV, MP3 using FFmpeg), even on dedicated servers.'}</span></li>
+    </ul>
+  </section>
+
+  <section className="features-section" aria-labelledby="proof-heading">
+    <div className="features-section__heading">
+      <p className="features-eyebrow">Getting started</p>
+      <h2 id="proof-heading">Jump into Onset VoIP</h2>
+      <p>
+        {'Try the runnable demo, inspect the example project, then use the setup docs to wire the same building blocks into your own game.'}
+      </p>
+    </div>
+
+    <div className="feature-proof-grid">
+      <Link className="feature-proof-card" to="/docs/voice-channels">
+        <figure>
+          <img src="/img/voice-channel-set.png" alt="Blueprint voice channel setup for Onset VoIP" />
+          <figcaption>{'Create proximity, radio, team, or phone chat with server-owned voice channels.'}</figcaption>
+        </figure>
+      </Link>
+      <Link className="feature-proof-card" to="/docs/speaker-components">
+        <figure>
+          <img src="/img/speakercomponent_demo.jpg" alt="Onset VoIP speaker component demo" />
+          <figcaption>{'Place speaker components for radios, PA systems, cameras, and level props.'}</figcaption>
+        </figure>
+      </Link>
+      <Link className="feature-proof-card" to="/docs/recording">
+        <figure>
+          <img src="/img/recording-remote.jpg" alt="Blueprint nodes for recording remote players" />
+          <figcaption>{'Record local or remote voice when sessions need to be saved or reviewed.'}</figcaption>
+        </figure>
+      </Link>
+      <Link className="feature-proof-card" to="/docs/troubleshooting#plugin-settings">
+        <figure>
+          <img src="/img/plugin-settings.jpg" alt="Onset VoIP plugin settings in Unreal Engine" />
+          <figcaption>{'Tune quality, playback classes, nameplates, effects, and network behavior in project settings.'}</figcaption>
+        </figure>
+      </Link>
+    </div>
+  </section>
+
+  <section className="features-section features-cta" aria-labelledby="next-heading">
+    <div>
+      <p className="features-eyebrow">Ready to evaluate</p>
+      <h2 id="next-heading">Try the demo before you buy</h2>
+      <p>
+        {'The Fab listing links to a packaged demo and the example project source, so you can hear the plugin running before adding it to your own project.'}
+      </p>
+    </div>
+    <div className="features-cta__actions">
+      <a className="button button--primary" href="https://www.fab.com/listings/78769f70-76a5-4cfd-bac0-1fed7f99381a">
+        {'View on Fab'}
+      </a>
+      <a className="button button--secondary" href="https://github.com/BlueMountainsIO/VoiceExample">
+        {'Example project'}
+      </a>
+    </div>
+  </section>
+</main>

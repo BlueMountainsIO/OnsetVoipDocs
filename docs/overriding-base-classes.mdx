@@ -1,0 +1,29 @@
+---
+title: Overriding base classes
+description: Overriding plugin base classes.
+---
+
+# Overriding base classes
+
+Sometimes you might want to extend the functionality of a specific class.
+
+
+### Overriding `UOnsetVoipTalker`
+
+**Edit** -> **Project Settings** -> **Onset VoIP Settings** -> **Default OnsetVoip Talker Class**
+
+![DefaultOnsetVoipTalkerClass setting](/img/override-talker-class.jpg)
+
+### Overriding `UOnsetVoipAudioComponent`
+
+**Edit** -> **Project Settings** -> **Onset VoIP Settings** -> **Default Onset Voip Audio Component Class 2D / 3D**
+
+![DefaultOnsetVoipAudioComponentClass setting](/img/override-voicecomponent-class.jpg)
+
+It can also be overriden in your custom `UOnsetVoipTalker` class.
+
+### Overriding `UOnsetVoipSoundWave`
+
+Go to the Details panel of your custom `UOnsetVoipAudioComponent` class.
+
+![DefaultOnsetVoipAudioComponentClass setting](/img/override-soundwave-class.jpg)
