@@ -75,7 +75,7 @@ const config = {
             position: 'left',
           },
           {
-            href: 'https://github.com/BlueMountainsIO/VoiceExample',
+            href: 'https://github.com/BlueMountainsIO/OnsetVoipExample',
             label: 'Example Project',
             position: 'right',
           },
@@ -105,8 +105,8 @@ const config = {
             title: 'Reference',
             items: [
               {
-                label: 'Voice Example',
-                href: 'https://github.com/BlueMountainsIO/VoiceExample',
+                label: 'OnsetVoipExample',
+                href: 'https://github.com/BlueMountainsIO/OnsetVoipExample',
               },
             ],
           },
