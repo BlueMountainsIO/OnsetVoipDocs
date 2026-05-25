@@ -1,7 +1,16 @@
 import Link from '@docusaurus/Link';
+import demoSceneImage from '@site/static/img/demoscene.jpg';
+import pluginSettingsImage from '@site/static/img/plugin-settings.jpg';
+import recordingRemoteImage from '@site/static/img/recording-remote.jpg';
+import speakerComponentImage from '@site/static/img/speakercomponent_demo.jpg';
+import voiceChannelImage from '@site/static/img/voice-channel-set.png';
 
 <main className="features-page">
-  <section className="features-hero" aria-labelledby="features-heading">
+  <section
+    className="features-hero"
+    aria-labelledby="features-heading"
+    style={{'--features-hero-image': `url(${demoSceneImage})`}}
+  >
     <div className="features-hero__content">
       <p className="features-eyebrow">The VoIP plugin that you have been waiting for</p>
       <h1 id="features-heading">Dynamic Voice Chat System</h1>
@@ -80,25 +89,25 @@ import Link from '@docusaurus/Link';
     <div className="feature-proof-grid">
       <Link className="feature-proof-card" to="/docs/voice-channels">
         <figure>
-          <img src="/img/voice-channel-set.png" alt="Blueprint voice channel setup for Onset VoIP" />
+          <img src={voiceChannelImage} alt="Blueprint voice channel setup for Onset VoIP" />
           <figcaption>{'Create proximity, radio, team, or phone chat with server-owned voice channels.'}</figcaption>
         </figure>
       </Link>
       <Link className="feature-proof-card" to="/docs/speaker-components">
         <figure>
-          <img src="/img/speakercomponent_demo.jpg" alt="Onset VoIP speaker component demo" />
+          <img src={speakerComponentImage} alt="Onset VoIP speaker component demo" />
           <figcaption>{'Place speaker components for radios, PA systems, cameras, and level props.'}</figcaption>
         </figure>
       </Link>
       <Link className="feature-proof-card" to="/docs/recording">
         <figure>
-          <img src="/img/recording-remote.jpg" alt="Blueprint nodes for recording remote players" />
+          <img src={recordingRemoteImage} alt="Blueprint nodes for recording remote players" />
           <figcaption>{'Record local or remote voice when sessions need to be saved or reviewed.'}</figcaption>
         </figure>
       </Link>
       <Link className="feature-proof-card" to="/docs/troubleshooting#plugin-settings">
         <figure>
-          <img src="/img/plugin-settings.jpg" alt="Onset VoIP plugin settings in Unreal Engine" />
+          <img src={pluginSettingsImage} alt="Onset VoIP plugin settings in Unreal Engine" />
           <figcaption>{'Tune quality, playback classes, nameplates, effects, and network behavior in project settings.'}</figcaption>
         </figure>
       </Link>

@@ -1,9 +1,5 @@
 # Onset VoIP Plugin Documentation
 
-This repo contains the editable web documentation source for the Onset VoIP Unreal Engine plugin. The documentation was converted from the original PDF documentation for plugin version 1.8.4 into a Docusaurus 3 site.
-
-The long-term documentation source of truth is now the `.mdx` files in `docs/`.
-
 ## Install dependencies
 
 ```bash

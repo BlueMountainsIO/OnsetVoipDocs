@@ -661,7 +661,7 @@ a {
   align-items: center;
   background:
     linear-gradient(90deg, rgba(8, 29, 36, 0.94), rgba(8, 29, 36, 0.85) 48%, rgba(8, 29, 36, 0.44)),
-    url('/img/demoscene.jpg');
+    var(--features-hero-image);
   background-position: center;
   background-size: cover;
   color: #ffffff;
