@@ -89,6 +89,7 @@ This should cover all changes that you might want to be aware of when upgrading 
 - Old config/settings no longer apply: `VoiceCaptureSampleRate`, `VoiceCaptureChannels`, `DefaultSoundWaveVolume`, `EncodingHint`, `bAdvancedEncoderSettings`, and `bEnableVBR`.
 - `DefaultSoundWaveVolume` was removed. Remote voice volume is now controlled on the audio component, for example through `voice.volume2d`, `voice.volume3d`, or the component volume.
 - `UOnsetVoipSoundWave::GetAttenuation()` and `UOnsetVoipSoundWave::SetAttenuation()` were removed. Set attenuation and source effects on `UOnsetVoipAudioComponent` instead.
+- `UOnsetVoipSoundWave` no longer derives from `USoundWaveProcedural`. It now uses Unreal's `USoundWave`/`ISoundGenerator` path, so custom code that casts it to `USoundWaveProcedural`, calls `QueueAudio()`, binds procedural underflow delegates, or passes raw int16 byte buffers to `AddAudioData()` must be updated to use the Onset VoIP float PCM APIs instead.
 - If you customize voice relevancy in C++, `VoipNetRelevancy` is now on `UOnsetVoipWorldSubsystem` instead of `UOnsetVoipDataChannel`.
 - Recordings now use the new fixed 24 kHz mono voice pipeline. Raw PCM recordings are still signed 16-bit PCM, but no longer use `VoiceCaptureSampleRate` or `VoiceCaptureChannels`.
 - Recordings without a known file extension now default to WAV instead of raw PCM.
@@ -97,7 +98,7 @@ This should cover all changes that you might want to be aware of when upgrading 
   - `NumberOfFramesToStopPlaybackIfNoAudio` -> `TimeToStopPlaybackIfNoAudio`
   - `InitialPlaybackBufferDelay` -> `InitialJitterBufferDelay`
   - `MaxBufferPlaybackDelay` -> `MaxJitterBufferDelay`
-  - Added `SoundWavePreBufferDelay`
+  - Added `PlaybackPreBufferDelay`
 
 
 ## 1.8.5 – 25 May 2025 (UE 5.5+)

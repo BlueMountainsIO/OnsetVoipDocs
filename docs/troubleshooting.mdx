@@ -129,7 +129,7 @@ ConfiguredLanSpeed=200000
 Note: I did not test Wwise myself. The information provided here was reported by users.
 :::
 
-This VoIP plugin plays voice through a `UAudioComponent` with a `USoundWaveProcedural` which is based on `USoundWave`. This means it works like any other standard audio in the engine.
+This VoIP plugin plays voice through a `UAudioComponent` with a `USoundWave` that uses Unreal's `ISoundGenerator` audio mixer path. This means it works like any other standard audio in the engine.
 Ask the creator of your third-party audio plugin how to handle standard Unreal Audio for your needs.
 
 ## Screenshot of all plugin settings inside **Edit** -> **Project Settings** -> **Onset VoIP Settings**: {#plugin-settings}

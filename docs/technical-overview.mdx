@@ -19,4 +19,4 @@ The plugin uses Unreal's replicated `APlayerState` as the identity for each play
 
 `UOnsetVoipAudioComponent` owns a `UOnsetVoipSoundWave`, binds to decoded talker audio, and applies the configured attenuation and source effect chain assets.
 
-`UOnsetVoipSoundWave` is based on `USoundWaveProcedural`. It buffers decoded float PCM and supplies it to Unreal's audio mixer for playback.
+`UOnsetVoipSoundWave` is based on `USoundWave` and uses Unreal's `ISoundGenerator` path. It buffers decoded float PCM and supplies it directly to Unreal's audio mixer for playback.
