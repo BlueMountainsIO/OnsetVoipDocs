@@ -1,18 +1,18 @@
 ---
 title: Voice channels (2D)
-description: Server-side voice channels for phones, walkie talkies, global voice, and team chat.
+description: Server-side voice channels for phones, walkie-talkies, global voice, and team chat.
 ---
 
 # Voice channels (2D)
 
-This plugin enables you to build systems like phones, walkie talkies, global voice and team voice chats with two-dimensional (2D) voice through the use of voice channels. Voice channels are a server side routing system. Clients do not manage voice channel membership. The server decides who should receive voice data.
+This plugin enables you to build systems like phones, walkie-talkies, global voice, and team voice chats with two-dimensional (2D) voice using voice channels. Voice channels are a server-side routing system. Clients do not manage voice channel membership. The server decides who should receive voice data.
 
 Channel `0` is reserved for world, 3D, proximity voice. Positive channel ids are custom 2D channels you choose, for example channel `1` for radio, `2` for team voice, or `3` for global announcements.
 
 Players can be in multiple voice channels. A player can be available through proximity and through a phone or radio at the same time, but each listener will only get one playback for that speaker. If two players share world `0`, radio `1`, and group chat `2`, the listener will not hear the speaker three times.
 
 :::note
-By default, shared 2D voice channels have priority over proximity and are played once in 2D. But this behaviour can be altered in `UOnsetVoipTalker`:
+By default, shared 2D voice channels have priority over proximity and are played once in 2D. But this behavior can be altered in `UOnsetVoipTalker`:
 
 - `bEnable2DVoicePlaybackOnBoth2DAnd3D` also plays 2D channel voice through 3D proximity playback.
 - `bEnablePrefer2DVoicePlaybackOn3DIfNear` plays 2D channel voice in 3D when the player is nearby, and in 2D when they are farther away.

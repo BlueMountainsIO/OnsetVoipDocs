@@ -6,8 +6,8 @@ description: Required setup for the Onset VoIP Unreal Engine plugin.
 # Plugin Setup
 
 1. Install the plugin via the Unreal Engine Launcher for your engine version.
-3. Please ensure that any other voice plugins/systems are removed including configuration!
-2. Open your project, go to **Edit** -> **Plugins**, and search for `Onset VoIP`. Enable the plugin and close the editor.
+2. Please ensure that any other voice plugins/systems are removed, including their configuration!
+3. Open your project, go to **Edit** -> **Plugins**, and search for `Onset VoIP`. Enable the plugin and close the editor.
 
 ![Activate plugin in Unreal Engine](/img/plugin-activate.jpg)
 
@@ -53,6 +53,6 @@ For Unreal Engine 5.2 and older, note the `StaticChannelIndex` value:
 :::note
 Note for third-party OnlineSubsystems such as RedpointEOS:
 
-Some third-party online subsystems override the network channel definitions in their plugin config, such as the `/Config` folder inside the plugin. In this case, adding `ChannelDefinitions` to your project config may not work and you will have to add it to the subsystem plugin config instead. Please ask the creator of the OSS how to configure additional network channels if it does not work for you.
+Some third-party online subsystems override the network channel definitions in their plugin config, such as the `/Config` folder inside the plugin. In this case, adding `ChannelDefinitions` to your project config may not work, and you will have to add it to the subsystem plugin config instead. Please ask the creator of the OSS how to configure additional network channels if it does not work for you.
 Of course you may also contact me for support.
 :::

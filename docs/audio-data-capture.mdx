@@ -7,11 +7,11 @@ description: Capturing local microphone and UOnsetVoipTalker voice data.
 
 The delegate `Native_OnVoipMicrophoneAudioCaptured` in `UOnsetVoipLocalPlayerSubsystem` can be bound to intercept local microphone voice data. This is currently only available in C++.
 
-Format is raw 32 bit float PCM, 24 kHz mono.
+The format is raw 32-bit float PCM, 24 kHz mono.
 
 ## Capturing `UOnsetVoipTalker` voice data
 
-You can intercept audio from other players in BP and C++ with the following delegates. These are also internally used for the recording feature.
+You can intercept audio from other players in Blueprint and C++ with the following delegates. These are also internally used for the recording feature.
 
 ```text
 UOnsetVoipTalker::OnVoipAudioDataReceived
@@ -20,4 +20,4 @@ UOnsetVoipWorldSubsystem::OnVoipAudioDataReceived
 UOnsetVoipWorldSubsystem::Native_OnVoipAudioDataReceived
 ```
 
-Format is raw 32 bit float PCM, 24 kHz mono.
+The format is raw 32-bit float PCM, 24 kHz mono.

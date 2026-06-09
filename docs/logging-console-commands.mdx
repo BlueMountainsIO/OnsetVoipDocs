@@ -5,8 +5,8 @@ description: Log categories and console commands for the Onset VoIP plugin.
 
 # Logging & Console Commands
 
-The plugin implements the logging category named `LogOnsetVoip`. By default, `LogOnsetVoip` logs messages at `Log` level and above. To enable logging of lower-level functionality like sending packets you can set the verbosity to `Verbose` or `VeryVerbose`.
-In the Unreal console type the following command with `Verbose` or `VeryVerbose` at the end.
+The plugin implements the logging category named `LogOnsetVoip`. By default, `LogOnsetVoip` logs messages at `Log` level and above. To enable logging of lower-level functionality, such as sending packets, you can set the verbosity to `Verbose` or `VeryVerbose`.
+In the Unreal console, type the following command with `Verbose` or `VeryVerbose` at the end.
 
 ```text
 Log LogOnsetVoip Verbose
@@ -22,7 +22,7 @@ The log category named `LogOnsetAudioCapture` logs messages related to the micro
 Log LogOnsetAudioCapture Verbose
 ```
 
-To have the logging verbosity saved between editor restarts or in development builds you can configure them in your `DefaultEngine.ini`:
+To have the logging verbosity saved between editor restarts or in development builds, you can configure the log categories in your `DefaultEngine.ini`:
 
 ```ini
 [Core.Log]
@@ -31,7 +31,7 @@ LogOnsetVoipPacket=VeryVerbose
 LogOnsetAudioCapture=Verbose
 ```
 
-In packaged builds Unreal does not log in Shipping mode. To still get logs package as Development.
+In packaged builds, Unreal does not log in Shipping mode. To still get logs, package as Development.
 
 The console command `stat voip` prints useful information about the VoIP system.
 - `NetMode`: Net mode of the current world.

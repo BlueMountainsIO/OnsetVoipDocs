@@ -27,13 +27,13 @@ Stops an active recording.
 
 ## `IsRecording`
 
-Returns `true` if recording.
+Returns `true` if currently recording.
 
 ## `GetRecordingFile`
 
 Returns the output path for the recorded audio.
 
-The console command `voice.record.local` uses the same functions described above. Its source code also shows how to use the recording system in C++ without the premade recording functions.
+The console command `voice.record.local` uses the same functions described above. Its source code also shows how to use the recording system in C++ without the pre-made recording functions.
 
 To record remote players or talkers to audio files, use the following functions.
 
@@ -42,7 +42,7 @@ To record remote players or talkers to audio files, use the following functions.
 These functions behave like the recording functions explained above for the local microphone recording.
 
 By default, each `UOnsetVoipTalker` is recorded to a separate file. Therefore, `GetRecordingFile` will return the directory rather than the file.
-To record all talkers to a single file set the `Mix to Single File` flag to `true`.
+To record all talkers to a single file, set the `Mix to Single File` flag to `true`.
 This will mix all recorded talker audio down to a single output file. This flag is still experimental and may have some side effects like fluctuations in volume.
 
-The console command `voice.record.remote` uses the same functions described above. Its source code also shows how to use the recording system in C++ without the premade recording functions.
+The console command `voice.record.remote` uses the same functions described above. Its source code also shows how to use the recording system in C++ without the pre-made recording functions.

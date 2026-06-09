@@ -23,7 +23,7 @@ Settings that influence voice quality and bandwidth can be found in **Edit** -> 
 :::note
 If RNNoise support is compiled out in `OnsetVoip.Build.cs`, `Enable Noise Suppression` is disabled at runtime even if an old config file still contains it as enabled.
 
-Opus and RNNoise do not run on the game thread to save on game thread time. So cpu cost of opus complexity and noise suppression with RNNoise are less relevant.
+Opus and RNNoise do not run on the game thread, so the CPU cost of Opus complexity and RNNoise noise suppression is less relevant.
 :::
 
 ## Bit Rate
@@ -43,7 +43,7 @@ Opus has recommended 20 ms bitrate ranges for speech. As a rough guide, wideband
 - Higher values improve coding efficiency, but every local talker pays the extra encoder cost.
 - `5` is a safe default. Use `8` to `10` for high quality presets if your target hardware can afford it.
 
-Opus encoding does not run on the game thread, meaning you don't have to worry much about your game thread times.
+Opus encoding does not run on the game thread, meaning you don't have to worry much about your game thread time.
 Complexity does not directly increase bandwidth. It changes how well Opus spends the bitrate you already gave it.
 
 ## DTX

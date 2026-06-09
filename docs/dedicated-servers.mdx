@@ -5,9 +5,9 @@ description: Enabling voice processing on dedicated servers.
 
 # Voice processing on dedicated servers
 
-By default voice data is “just” passed through on the dedicated server. Meaning the dedicated server does not decode the voice data or does any other processing on it.
+By default, voice data is “just” passed through on the dedicated server. This means the dedicated server does not decode the voice data or perform any other processing on it.
 
-Since version 1.6 this can be changed to have similar support for voice processing like on clients and listen servers. This includes:
+Since version 1.6, this can be changed to have voice processing support similar to clients and listen servers. This includes:
 
 - Decoding of compressed voice data. Used for recording features.
 - Tracking talking state and calling delegates. (`UOnsetVoipTalker::IsTalking`, `GetLastVoipRelevancy`, `OnVoipAudioDataReceived`, `GetCurrentAmplitude`)

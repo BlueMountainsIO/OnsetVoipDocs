@@ -14,12 +14,33 @@ Enabled by default the plugin will automatically level the microphone volume so 
 
 ## Changing remote player voice volume
 
-There are mulitple ways to change the volume of other (remote) players.
+There are multiple ways to change the volume of other (remote) players.
 
-The cleanest way is to add sound classes in the settings and then changing the volume in the sound class.
+The cleanest way is to use sound classes.
+
+Go to **Edit** -> **Project Settings** -> **Onset VoIP Settings** -> **Voice** -> **Playback** and set:
+
+- **Default Sound Class 3D** for proximity, world voice channel `0`, and speaker components.
+- **Default Sound Class 2D** for 2D voice channels.
+
+Onset VoIP applies these settings to the voice `UAudioComponent` as its sound class override. You can then change the remote voice volume on the sound class like you would for other Unreal audio.
 
 ![settings sound class](/img/settings-soundclass.jpg)
 
-Another way is to use these built in console commands.
+## Using Audio Volumes, reverb, and submix sends
 
-`voice.volume3d` sets volume on all 3d audio (proximity, voice channel 0 and speaker components). `voice.volume2d` sets volume for voice that you hear through voice channels.
+Because remote voice playback uses a normal Unreal `UAudioComponent`, sound class settings also let voice participate in Unreal audio routing.
+
+For example, to make proximity voice react to Audio Volumes that route to different reverb submixes:
+
+1. Create or choose a sound class for 3D voice, for example `SC_Voip3D`.
+2. Configure that sound class the same way as your other spatial sounds, such as enabling **Send to Master Reverb Submix** if your project uses Audio Volume reverb sends.
+3. Set **Default Sound Class 3D** or **Default Sound Class 2D** to that sound class in the Onset VoIP settings.
+
+When the listener moves through Audio Volumes, Unreal can then route the 3D voice through the active reverb/submix settings, such as a hallway submix in a hallway Audio Volume and a smaller room submix in a room Audio Volume.
+
+## Built-in volume console commands
+
+Another way is to use these built-in console commands.
+
+`voice.volume3d` sets volume on all 3D audio (proximity, voice channel 0 and speaker components). `voice.volume2d` sets volume for voice that you hear through voice channels.
