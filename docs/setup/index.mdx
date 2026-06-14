@@ -7,7 +7,19 @@ description: Required setup for the Onset VoIP Unreal Engine plugin.
 
 1. Install the plugin via the Unreal Engine Launcher for your engine version.
 2. Please ensure that any other voice plugins/systems are removed, including their configuration!
-3. Open your project, go to **Edit** -> **Plugins**, and search for `Onset VoIP`. Enable the plugin and close the editor.
+3. In your project's `Config/DefaultEngine.ini`, disable Unreal's built-in voice systems:
+
+```ini
+[Voice]
+bEnabled=False
+
+[OnlineSubsystem]
+bHasVoiceEnabled=False
+```
+
+These values must stay `False` so Unreal's legacy voice system does not start and conflict with Onset VoIP. Onset VoIP 2.0 uses `AudioCapture` and does not need `IVoiceCapture`. The engine voice system can also crash during seamless travel.
+
+4. Open your project, go to **Edit** -> **Plugins**, and search for `Onset VoIP`. Enable the plugin and close the editor.
 
 ![Activate plugin in Unreal Engine](/img/plugin-activate.jpg)
 
