@@ -70,7 +70,7 @@ I tested the plugin with UE 5.5 and 5.7 on:
 - macOS
 - Pixel Streaming platforms
 
-The settings under **Edit** -> **Project Settings** -> **Onset VoIP Settings** now allow setting a default `USoundClass` that will be used by voip audio components. You no longer have to override the classes for this.
+The settings under **Edit** -> **Project Settings** -> **Onset VoIP Settings** now allow setting default `USoundClass` values separately for 2D and 3D voice audio components with `DefaultSoundClass2D` and `DefaultSoundClass3D`. You no longer have to override the classes for this.
 
 ### Upgrading from 1.8.5 to 2.0.0:
 
@@ -96,9 +96,8 @@ This should cover all changes that you might want to be aware of when upgrading 
 - Distance-based relevancy is now enabled by default.
 - Settings changes:
   - `NumberOfFramesToStopPlaybackIfNoAudio` -> `TimeToStopPlaybackIfNoAudio`
-  - `InitialPlaybackBufferDelay` -> `InitialJitterBufferDelay`
-  - `MaxBufferPlaybackDelay` -> `MaxJitterBufferDelay`
-  - Added `PlaybackPreBufferDelay`
+  - Network jitter buffering is now controlled by `InitialJitterBufferDelay` and `MaxJitterBufferDelay`
+  - Decoded PCM playback buffering is now controlled separately by `InitialPlaybackBufferDelay` and `MaxPlaybackBufferDelay`
 
 
 ## 1.8.5 – 25 May 2025 (UE 5.5+)
