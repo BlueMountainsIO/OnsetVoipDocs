@@ -123,13 +123,28 @@ ConfiguredLanSpeed=200000
   </div>
 </div>
 
+<div className="troubleshooting-item">
+  <div className="troubleshooting-row troubleshooting-row--problem">
+    <span className="troubleshooting-label troubleshooting-label--problem">Problem</span>
+    <div className="troubleshooting-copy">
+      <p>After possession or switching characters the voice/proximity does not work.</p>
+    </div>
+  </div>
+  <div className="troubleshooting-row troubleshooting-row--solution">
+    <span className="troubleshooting-label troubleshooting-label--solution">Solution</span>
+    <div className="troubleshooting-copy">
+      <p>Ensure your Character Blueprint is replicated.</p>
+    </div>
+  </div>
+</div>
+
 </div>
 
 :::note
 Note: I did not test Wwise myself. The information provided here was reported by users.
 :::
 
-This VoIP plugin plays voice through a `UAudioComponent` with a `USoundWave` that uses Unreal's `ISoundGenerator` audio mixer path. This means it works like any other standard audio in the engine.
+This VoIP plugin plays voice through a `UAudioComponent` with a `USoundWaveProcedural` that feeds float PCM through Unreal's standard audio mixer path. This means it works like any other standard audio in the engine.
 Ask the creator of your third-party audio plugin how to handle standard Unreal Audio for your needs.
 
 ## Screenshot of all plugin settings inside **Edit** -> **Project Settings** -> **Onset VoIP Settings**: {#plugin-settings}

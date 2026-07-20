@@ -17,6 +17,7 @@ This opens a lot more possibilities on platform support and OS microphone contro
 
 You can now get the input device currently used for voice capture with the new function `UOnsetVoipLocalPlayerSubsystem::GetVoiceCaptureDevice`.
 The new delegate `OnVoipCaptureLost` is called if voice capture is ever lost during capturing. For example when unplugging the microphone.
+The new delegate `OnVoipCaptureStateChange` is called whenever voice capture starts or stops, matching `IsCapturingVoice()`.
 Changing Windows microphone settings at runtime is supported. The device will properly recover and not stay in a broken state.
 
 `GetCurrentAmplitude()` now works on any platform.
@@ -52,6 +53,8 @@ Place or spawn a `UOnsetVoipSpeakerComponent` on the map and call `SetTalkerForP
 ### Automatic Gain Control
 The plugin now properly levels your microphone input volume resulting in a smooth playback for remote players even if you talk quietly or loudly. (*voice.MicAutoLevel*)
 
+### Pitch Shift Effect
+Added `UOnsetSourceEffectPitchShiftPreset`, a source effect for changing voice pitch without speeding up or slowing down procedural audio playback.
 
 ### Reduced setup complexity
 Zero Config Setup. No more project config is required. Just enable the plugin, restart the editor and you are good to go.
@@ -89,7 +92,6 @@ This should cover all changes that you might want to be aware of when upgrading 
 - Old config/settings no longer apply: `VoiceCaptureSampleRate`, `VoiceCaptureChannels`, `DefaultSoundWaveVolume`, `EncodingHint`, `bAdvancedEncoderSettings`, and `bEnableVBR`.
 - `DefaultSoundWaveVolume` was removed. Remote voice volume is now controlled on the audio component, for example through `voice.volume2d`, `voice.volume3d`, or the component volume.
 - `UOnsetVoipSoundWave::GetAttenuation()` and `UOnsetVoipSoundWave::SetAttenuation()` were removed. Set attenuation and source effects on `UOnsetVoipAudioComponent` instead.
-- `UOnsetVoipSoundWave` no longer derives from `USoundWaveProcedural`. It now uses Unreal's `USoundWave`/`ISoundGenerator` path, so custom code that casts it to `USoundWaveProcedural`, calls `QueueAudio()`, binds procedural underflow delegates, or passes raw int16 byte buffers to `AddAudioData()` must be updated to use the Onset VoIP float PCM APIs instead.
 - If you customize voice relevancy in C++, `VoipNetRelevancy` is now on `UOnsetVoipWorldSubsystem` instead of `UOnsetVoipDataChannel`.
 - Recordings now use the new fixed 24 kHz mono voice pipeline. Raw PCM recordings are still signed 16-bit PCM, but no longer use `VoiceCaptureSampleRate` or `VoiceCaptureChannels`.
 - Recordings without a known file extension now default to WAV instead of raw PCM.
