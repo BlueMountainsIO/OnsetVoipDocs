@@ -31,9 +31,7 @@ Opus and RNNoise do not run on the game thread, so the CPU cost of Opus complexi
 `Bit Rate` is the main quality vs bandwidth setting. The value is in bits per second, so `36000` means 36 kbit/s before network overhead.
 The project setting is clamped from `5000` to `512000`, but values above `48000` are rarely useful for game voice chat.
 
-Lower bitrates save bandwidth and can still sound good for normal voice chat. Higher bitrates preserve more detail, but the improvement becomes smaller after a point. For game voice chat, `24000` to `36000` is usually a good range. Use `48000` or more when voice quality is more important than bandwidth.
-
-Opus has recommended 20 ms bitrate ranges for speech. As a rough guide, wideband speech is commonly around 16-20 kbit/s, and higher-bandwidth speech is commonly around 28-40 kbit/s. The plugin default of 36 kbit/s is meant to sit on the higher-quality side for voice.
+Lower bitrates save bandwidth and can still sound good for normal voice chat. Higher bitrates preserve more detail, but the improvement becomes smaller after a point. For game voice chat, `24000` to `36000` is usually a good range.
 
 ## Complexity
 

@@ -48,7 +48,7 @@ const sidebars = {
         'logging-console-commands',
         'overriding-base-classes',
         'audio-data-capture',
-        'runtime-audio-objects',
+        'changing-sourceeffectchain-volume-attenuation-at-runtime',
       ],
     },
     {

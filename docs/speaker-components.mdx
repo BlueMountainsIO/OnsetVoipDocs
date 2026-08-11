@@ -23,9 +23,11 @@ To stop the speaker from playing that player, call `SetTalkerForPlayback` again 
 
 ## Network relevancy
 
-The speaker uses the owning actor's normal Unreal network relevancy. If the speaker actor is relevant to a client, that client can receive the voice packet for speaker playback.
+The speaker uses the owning actor's normal Unreal network relevancy (`IsNetRelevantFor`), evaluated from the listening player's server-authoritative location. This respects `Always Relevant`, ownership, custom relevancy overrides, and the owning actor's cull distance, and it does not depend on client-reported camera data, so packet loss cannot leave speaker voice stuck at a stale listener location.
 
 This means the speaker's range is controlled by the owning actor, not by the Onset VoIP setting `MaxReplicationDistance`. For distance-based speaker range, change the actor replication settings such as `Net Cull Distance Squared`.
+
+Make sure the owning actor's `Net Cull Distance Squared` covers the entire area from which players should hear the speaker. A speaker actor that gets distance-culled stops receiving both the talker binding and the voice packets. Levels usually contain only a few speaker actors, so a generous cull distance or `Always Relevant` costs very little.
 
 Speaker playback is part of the world/proximity voice channel (`0`). If a player has been removed from channel `0`, or is muted on channel `0`, their voice will not be routed through speaker components.
 
