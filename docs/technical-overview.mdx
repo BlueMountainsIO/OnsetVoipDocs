@@ -19,4 +19,15 @@ The plugin uses Unreal's replicated `APlayerState` as the identity for each play
 
 `UOnsetVoipAudioComponent` owns a `UOnsetVoipSoundWave`, binds to decoded talker audio, and applies the configured attenuation and source effect chain assets.
 
-`UOnsetVoipSoundWave` is based on `USoundWave` and uses Unreal's `ISoundGenerator` path. It buffers decoded float PCM and supplies it directly to Unreal's audio mixer for playback.
+## Relevancy routing
+
+The server stamps a relevancy value on each voice packet per receiving connection. On the receiving side, the talker dispatches the decoded audio once, and each bound audio component only plays audio whose relevancy contains its accepted flag. The flags are a bitmask, so a packet can be routed to several playback types at once.
+
+| Relevancy flag | Meaning | Plays through |
+| --- | --- | --- |
+| `2D` | Shared voice channel (team chat, radio channel) | The talker's 2D audio component, created on demand |
+| `3D` | Proximity voice within `MaxReplicationDistance` | The talker's 3D audio component on the pawn, created on demand |
+| `Speaker` | A bound speaker actor is net relevant to the listener | Every `UOnsetVoipSpeakerComponent` bound to the talker |
+| `None` | Not audible for this listener. Never forwarded to clients, occurs only during server-side processing | Nothing, but talking state and audio events still update |
+
+Talking state (`OnVoipTalkingStateChange`) and the audio data events update whenever a packet is processed, regardless of the relevancy value. Servers process every packet, so server-side talking state works for all talkers on both dedicated and listen servers, and [recorders](./recording) bound to the audio data events capture every talker on both server types, including talkers the listen-server host cannot hear.
