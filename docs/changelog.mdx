@@ -5,7 +5,29 @@ description: Changelog for the Onset VoIP Plugin.
 
 # Changelog
 
-## 2.0.0 – 04 August 2026 (UE 5.5+)
+## 2.0.2 - 08 November 2026 (UE 5.5+)
+
+- Fix voice capture staying muted after a long game thread hitch.
+- Fix a possible crash when trying to enable voice again from an `OnVoipCaptureLost` handler.
+- Fix an explicitly selected microphone being replaced by the system default later when it was already the active device.
+- Fix a short leftover of the previous capture session on voice capture start.
+- Windows: Fix assertion in non-shipping builds when a device notification arrives while capture is rebuilt, for example when plugging in a headset or switching Bluetooth profiles.
+- Linux (UE 5.7+): Allow switching between microphones that have the same name.
+- Linux (UE 5.7+): Detect when an explicitly selected microphone is unplugged and call `OnVoipCaptureLost`.
+- Pixel Streaming: Fix a possible crash when capture shuts down while a browser peer still sends audio.
+- Run FFmpeg for voice recordings in the user temp directory instead of the FFmpeg install directory.
+
+## 2.0.1 - 25 September (UE 5.5+)
+
+- Add `IsNoiseSuppressionEnabled()` and `SetNoiseSuppressionEnabled()` to `UOnsetVoipLocalPlayerSubsystem`, allowing noise suppression to be toggled at runtime.
+- Fix repeated DSP pipeline resets with some microphones, which could cause severe audio stuttering.
+- Support nameplates for pawns without an `APlayerState`, such as bots and AI-controlled pawns.
+- Fix nameplate widgets not being notified when their player state is cleared.
+- Increase the automatic gain control target loudness.
+- Android: Close the capture stream after a failed start so capture can recover.
+- Clarify the documented behavior of `Activate()` and `Deactivate()` on speaker components.
+
+## 2.0.0 - 04 August 2026 (UE 5.5+)
 
 This is a major update focused on voice quality, microphone reliability, packet loss recovery, and platform support.
 2.0.0 is available on Fab.com as of UE 5.5 but the plugin also supports earlier engine versions. Try to use it as a project plugin and contact me if you need any help.
@@ -103,7 +125,7 @@ This should cover all changes that you might want to be aware of when upgrading 
   - Decoded PCM playback buffering is now controlled separately by `InitialPlaybackBufferDelay` and `MaxPlaybackBufferDelay`
 
 
-## 1.8.5 – 25 May 2026 (UE 5.5+)
+## 1.8.5 - 25 May 2026 (UE 5.5+)
 
 Version 2 of this plugin is under development and can be beta tested.
 If you are interested join the new Discord server: [https://discord.gg/myUmdZddgx](https://discord.gg/myUmdZddgx)
@@ -119,7 +141,7 @@ Don’t forget to check out the new Voice Example project.
 
 [BlueMountainsIO/OnsetVoipExample](https://github.com/BlueMountainsIO/OnsetVoipExample)
 
-## 1.8.4 – 25 January 2026 (UE 5.5+)
+## 1.8.4 - 25 January 2026 (UE 5.5+)
 
 - Fix amplitude replication
 - Fix listen server not able to hear other players sometimes
@@ -127,23 +149,23 @@ Don’t forget to check out the new Voice Example project.
 - Do not send voice to new connections that are not aware of the player state yet.
 - Minor code improvements
 
-## 1.8.3 – 04 December 2025 (UE 5.5+, backported for UE 5.4)
+## 1.8.3 - 04 December 2025 (UE 5.5+, backported for UE 5.4)
 
 - Fix a crash when joining a session with active speakers.
 
-## 1.8.2 – 18 November 2025 (UE 5.5+)
+## 1.8.2 - 18 November 2025 (UE 5.5+)
 
 - Android: Fix static noise on capture start. This is a workaround because of an engine bug.
 - Fix two compile warnings for UE 5.6+
 - Empty voice remainder before capture start.
 - Minor code improvements.
 
-## 1.8.1 – 02 November 2025 (UE 5.4+)
+## 1.8.1 - 02 November 2025 (UE 5.4+)
 
 - When calling `ToggleVoiceCapture(false)` and then immediately afterwards `ToggleVoiceCapture(true)` the device might not have fully stopped resulting in the device not being started. This case is now intercepted and capture is started once device stopped. Unless `ToggleVoiceCapture(false)` is called in between. This is non-blocking and happens mostly within 20 milliseconds.
 - Fix a rare crash when voice tries to play on an audio component without a sound wave being initialized.
 
-## 1.8 – 10 October 2025 (UE 5.4+)
+## 1.8 - 10 October 2025 (UE 5.4+)
 
 - Added the feature to play 2D voice channels in proximity (3D) if the other player is nearby. This is done by enabling `UOnsetVoipTalker::bEnablePrefer2DVoicePlaybackOn3DIfNear`
 Useful for cases where you use voice channels for walkie talkies but want to rather hear the other player in 3D if they are near. If the other player is not near then it will play in 2D.
@@ -155,11 +177,11 @@ Voice will still only be sent once to the client to save bandwidth.
 - Added `UOnsetVoipSettings::DefaultOnsetVoipAudioComponentClass2D/3D`. Until now you would need to also subclass `UOnsetVoipTalker` to change the default audio component class. Now you can set it under **Edit** -> **Project Settings** -> **Onset VoIP Settings**. The same variables remain in the `UOnsetVoipTalker` class as well and have a higher priority.
 - Until now `UOnsetVoipTalker::GetVoiceAudioComponent` would return null if the talker did not receive any voice yet. Now an audio component will be created on call if it doesn’t exist and saved/cached internally for playback.
 
-## 1.7.1 – 15 September 2025
+## 1.7.1 - 15 September 2025
 
 - Fix a crash during seamless travel that may happen sometimes.
 
-## 1.7 – 01 May 2025
+## 1.7 - 01 May 2025
 
 - Add initial support for PixelStreaming.
 - Fix disconnects on seamless travel.
@@ -179,11 +201,11 @@ Voice will still only be sent once to the client to save bandwidth.
 `SetSilenceDetectionThreshold`
 - Minor code improvements
 
-## 1.6.1 – 23 February 2025
+## 1.6.1 - 23 February 2025
 
 - Fix an issue with packet serialization resulting on disconnects on certain platforms.
 
-## 1.6 – 18 November 2024
+## 1.6 - 18 November 2024
 
 - Fully rewrote the voice recording feature. It now supports recording remote players to a single audio file, .wav files, conversion to mp3 using ffmpeg and recording/decoding voice on dedicated servers.
 - To enable voice processing on a dedicated server set `bEnableVoiceProcessing` to `true` in the `OnsetVoip.Build.cs` file. This will enable an entire set of features on dedicated servers, all listed inside the `OnsetVoip.Build.cs` file.
@@ -198,7 +220,7 @@ Voice will still only be sent once to the client to save bandwidth.
 - Fix a bug in `IsVoiceWorldRelevant` that caused wrong replication of some players.
 - Improved some comments.
 
-## 1.5 – 22 September 2024
+## 1.5 - 22 September 2024
 
 - Add console command `voice.record.local`, `voice.record.remote` to record local microphone or voice from remote `UOnsetVoipTalker`. Output location is printed in the logs, file format is signed 16-bit PCM with channels and sample rate as defined under **Edit** -> **Project Settings** -> **Onset VoIP Settings**. The file can be opened with programs like Audacity.
 - Add console command `voice.loopback` that triggers `UOnsetLocalPlayerSubsystem::ToggleLoopback`.
@@ -211,7 +233,7 @@ Voice will still only be sent once to the client to save bandwidth.
 - Packet voice data checksum is now enabled by default. To disable set the compile time constant `bEnableVoiceDatChecksum` = `false`.
 - Minor code improvements and fixes
 
-## 1.4 – 01 August 2024
+## 1.4 - 01 August 2024
 
 - Fix nameplate widget flickering in low FPS situations.
 - Add a limit on how many seconds of voice data may be buffered before playback must occur. Value can be changed under **Edit** -> **Project Settings** -> **Onset VoIP Settings** -> **Advanced** -> **Max Buffer Playback Delay**
@@ -220,13 +242,13 @@ Voice will still only be sent once to the client to save bandwidth.
 - Experimental distance-based network relevancy checks. **Edit** -> **Project Settings** -> **Onset VoIP Settings** -> **Advanced** -> **Use Distance Based Relevancy**
 - Minor fixes.
 
-## 1.3 – 04 July 2024
+## 1.3 - 04 July 2024
 
 - Add support for the client telling the server on what voice channels we want to speak in. Useful for features where you have a keyboard shortcut for talking in the world channel and another shortcut for talking inside a voice channel. The new functions are `ToggleVoiceCaptureWithChannel` and `ToggleVoiceCaptureWithChannels`.
 The talker must be part of the requesting voice channel on the server. See `UOnsetVoipTalker::SetVoiceChannel`.
 - Smaller fixes and improvements.
 
-## 1.2 – 25 June 2024
+## 1.2 - 25 June 2024
 
 - Add console variable `voice.MicInputGain2` to change the volume of the local microphone recording. The original engine function `voice.MicInputGain` should not be used as it causes voice artifacts.
 - Add function for retrieving microphone input loudness between 0.0-1.0:
@@ -256,12 +278,12 @@ The talker must be part of the requesting voice channel on the server. See `UOns
 - Add `UOnsetVoipBlueprintLibrary` for exposing some functions to blueprints without getting a subsystem first. Was requested by a user and does not contain all functions yet.
 - Add "Client/Server/Shared" to function category names so you more easily see the scope of the function.
 
-## 1.1 – 15 June 2024
+## 1.1 - 15 June 2024
 
 - Add `BitRate` setting for the libopus encoder under **Edit** -> **Project Settings** -> **Onset VoIP Settings** -> **Bit Rate**.
 - Fixed some content assets and default nameplate setting.
 - Fixed a crash on pawn possession.
 
-## 1.0 – 13 June 2024
+## 1.0 - 13 June 2024
 
 - Initial release.
